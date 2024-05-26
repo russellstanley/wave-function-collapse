@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c51g22upls6fa"]
+
+[ext_resource type="PackedScene" uid="uid://bgky42y0isc22" path="res://scenes/pattern.tscn" id="1_o64en"]
+[ext_resource type="Texture2D" uid="uid://ce17v2pc5rqqa" path="res://assets/sprites/patterns/corner.png" id="2_yksko"]
+[ext_resource type="Texture2D" uid="uid://bumwvh00k7dj4" path="res://assets/sprites/patterns/cross.png" id="3_c5fpk"]
+[ext_resource type="Texture2D" uid="uid://cmxpb3j1hr7kn" path="res://assets/sprites/patterns/empty.png" id="4_y4heh"]
+[ext_resource type="Texture2D" uid="uid://bns0fv1jgx5om" path="res://assets/sprites/patterns/line.png" id="5_iahm2"]
+
+[node name="Pipes" type="Node2D"]
+
+[node name="Corner" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+texture = ExtResource("2_yksko")
+up = [NodePath("../Cross")]
+down = [NodePath("../Line"), NodePath("../Empty")]
+left = [NodePath("../Empty")]
+right = [NodePath("../Line"), NodePath("../Cross")]
+
+[node name="Cross" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+texture = ExtResource("3_c5fpk")
+up = [NodePath(".")]
+down = [NodePath(".")]
+left = [NodePath("."), NodePath("../Corner"), NodePath("../Line")]
+right = [NodePath("."), NodePath("../Line")]
+
+[node name="Empty" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+texture = ExtResource("4_y4heh")
+up = [NodePath("."), NodePath("../Corner"), NodePath("../Line")]
+down = [NodePath("."), NodePath("../Line")]
+left = [NodePath(".")]
+right = [NodePath("."), NodePath("../Corner")]
+
+[node name="Line" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+texture = ExtResource("5_iahm2")
+up = [NodePath("."), NodePath("../Empty"), NodePath("../Corner")]
+down = [NodePath("."), NodePath("../Empty")]
+left = [NodePath("../Cross"), NodePath("../Corner"), NodePath(".")]
+right = [NodePath("../Cross"), NodePath(".")]
