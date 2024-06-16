@@ -5,6 +5,7 @@ var state : Array[bool]			# Super position of patterns.
 var collapsed : bool = false 	# True is the cell has collapsed.
 var location : Vector2i			# Location of the cell in the grid.
 var tile : int = -1 			# The pattern being used, -1 if not yet known.
+var current_entropy : int
 
 # Initialize the cell with available patterns and location.
 func _init(patterns : Array[Pattern], location : Vector2i):
@@ -12,7 +13,9 @@ func _init(patterns : Array[Pattern], location : Vector2i):
 	self.location = location
 	
 	for i in range(available.size()):
-		state.append(true) 
+		state.append(true)
+		
+	self.current_entropy = available.size()
 
 # Check if the state of a pattern could be valid given a surroudning tile.
 func is_state_valid(valid_patterns : Array[Pattern], current_pattern : Pattern):
@@ -45,8 +48,9 @@ func entropy(surrounding_cells):
 			state[a] = false
 			continue
 		state[a] = true
-		
-	return state.find(true)
+	
+	current_entropy = state.count(true)
+	return current_entropy
 
 # Collapse the state of the cell
 func collapse():	
@@ -62,6 +66,9 @@ func collapse():
 	if selction == null:
 		# In this case we have a contradiction
 		collapsed = true
+		current_entropy = -INF
+		print(state)
 	else:
 		collapsed = true
+		current_entropy = -INF
 		tile = selction

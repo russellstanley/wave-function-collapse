@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyy0uk3hinyoq"]
+
+[ext_resource type="Script" path="res://scripts/wave_generator.gd" id="1_h2l6v"]
+[ext_resource type="PackedScene" uid="uid://c51g22upls6fa" path="res://scenes/pipes.tscn" id="2_l05n8"]
+
+[node name="WaveGenerator" type="Node2D"]
+script = ExtResource("1_h2l6v")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.001
+autostart = true
+
+[node name="Pipes" parent="." instance=ExtResource("2_l05n8")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

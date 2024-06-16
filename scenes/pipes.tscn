@@ -18,7 +18,7 @@ right = [NodePath("../Line"), NodePath("../Cross")]
 [node name="Cross" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
 texture = ExtResource("3_c5fpk")
 up = [NodePath(".")]
-down = [NodePath(".")]
+down = [NodePath("."), NodePath("../Corner")]
 left = [NodePath("."), NodePath("../Corner"), NodePath("../Line")]
 right = [NodePath("."), NodePath("../Line")]
 
