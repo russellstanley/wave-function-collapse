@@ -29,5 +29,6 @@ autostart = true
 [node name="WaveRenderer" parent="." instance=ExtResource("5_r60qw")]
 
 [node name="WaveGenerator" parent="." instance=ExtResource("6_ki20v")]
+n = 0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

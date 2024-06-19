@@ -7,6 +7,14 @@ var location : Vector2i			# Location of the cell in the grid.
 var tile : int = -1 			# The pattern being used, -1 if not yet known.
 var current_entropy : int
 
+# Up and down are flipped
+var dir_to_int = {
+	"up" = 2,
+	"right" = 1,
+	"down" = 0,
+	"left" = 3
+	}
+
 # Initialize the cell with available patterns and location.
 func _init(patterns : Array[Pattern], location : Vector2i):
 	self.available = patterns
@@ -18,10 +26,9 @@ func _init(patterns : Array[Pattern], location : Vector2i):
 	self.current_entropy = available.size()
 
 # Check if the state of a pattern could be valid given a surroudning tile.
-func is_state_valid(valid_patterns : Array[Pattern], current_pattern : Pattern):
-	for p in valid_patterns:
-		if p.is_equal(current_pattern):
-			return true
+func is_state_valid(pattern_edges : Array[int], surroudning_edges : Array[int], dir : String):		
+	if (pattern_edges[dir_to_int[dir]] == surroudning_edges[(dir_to_int[dir] + 2) % 4]):
+		return true
 			
 	return false
 
@@ -33,15 +40,7 @@ func entropy(surrounding_cells):
 		for dir in surrounding_cells:
 			if surrounding_cells[dir] != null and surrounding_cells[dir].collapsed == true:
 				var surrounding_pattern = available[surrounding_cells[dir].tile]
-				if dir == "up":
-					# Up and down are flipped.
-					is_valid.append(is_state_valid(available[a].down, surrounding_pattern))
-				if dir == "down":
-					is_valid.append(is_state_valid(available[a].up, surrounding_pattern))
-				if dir == "left":
-					is_valid.append(is_state_valid(available[a].left, surrounding_pattern))
-				if dir == "right":
-					is_valid.append(is_state_valid(available[a].right, surrounding_pattern))
+				is_valid.append(is_state_valid(available[a].edges_id, surrounding_pattern.edges_id, dir))
 		
 		# If the state is invalid for any direction then set it to false
 		if is_valid.find(false) != -1:
@@ -67,7 +66,6 @@ func collapse():
 		# In this case we have a contradiction
 		collapsed = true
 		current_entropy = -INF
-		print(state)
 	else:
 		collapsed = true
 		current_entropy = -INF

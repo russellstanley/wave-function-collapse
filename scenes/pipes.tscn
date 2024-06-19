@@ -8,30 +8,18 @@
 
 [node name="Pipes" type="Node2D"]
 
-[node name="Corner" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+[node name="Corner" parent="." instance=ExtResource("1_o64en")]
 texture = ExtResource("2_yksko")
-up = [NodePath("../Cross")]
-down = [NodePath("../Line"), NodePath("../Empty")]
-left = [NodePath("../Empty")]
-right = [NodePath("../Line"), NodePath("../Cross")]
+edges_id = Array[int]([1, 1, 0, 0])
 
-[node name="Cross" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+[node name="Cross" parent="." instance=ExtResource("1_o64en")]
 texture = ExtResource("3_c5fpk")
-up = [NodePath(".")]
-down = [NodePath("."), NodePath("../Corner")]
-left = [NodePath("."), NodePath("../Corner"), NodePath("../Line")]
-right = [NodePath("."), NodePath("../Line")]
+edges_id = Array[int]([1, 1, 1, 1])
 
-[node name="Empty" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+[node name="Empty" parent="." instance=ExtResource("1_o64en")]
 texture = ExtResource("4_y4heh")
-up = [NodePath("."), NodePath("../Corner"), NodePath("../Line")]
-down = [NodePath("."), NodePath("../Line")]
-left = [NodePath(".")]
-right = [NodePath("."), NodePath("../Corner")]
+edges_id = Array[int]([0, 0, 0, 0])
 
-[node name="Line" parent="." node_paths=PackedStringArray("up", "down", "left", "right") instance=ExtResource("1_o64en")]
+[node name="Line" parent="." instance=ExtResource("1_o64en")]
 texture = ExtResource("5_iahm2")
-up = [NodePath("."), NodePath("../Empty"), NodePath("../Corner")]
-down = [NodePath("."), NodePath("../Empty")]
-left = [NodePath("../Cross"), NodePath("../Corner"), NodePath(".")]
-right = [NodePath("../Cross"), NodePath(".")]
+edges_id = Array[int]([0, 1, 0, 1])

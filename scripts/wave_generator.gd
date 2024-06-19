@@ -48,14 +48,25 @@ func _process(_delta):
 		wave_renderer.draw_sprite(Vector2i(curent_x, current_y), texture)
 	
 # Load a set of preset pipe patterns
-# TODO: Remove once using automated process
 func load_pipes():
 	for i in pipes.get_children():
 		print(i.get_path())
 		patterns.append(i)
-		
+	
+	var corner_up = patterns[0]
+	var corner_right = corner_up.rotate_pattern()
+	var corner_down = corner_right.rotate_pattern()
+	var corner_left = corner_up.reflect_pattern()
+	
+	var line_horizontal = patterns[3]
+	var line_vertical = line_horizontal.rotate_pattern()
+	
+	patterns.append(corner_right)
+	patterns.append(corner_down)
+	patterns.append(corner_left)
+	patterns.append(line_vertical)
 	n = patterns[0].image.get_size().x
-	# remove_duplicates(patterns)
+	remove_duplicates(patterns)
 	
 # Calculate the entropy and return the minimum
 func calculate_entropy():
@@ -99,11 +110,28 @@ func find_surrounding(x, y):
 				surrounding["left"] = output_image[y][x - 1]	
 			if dir == "right":
 				surrounding["right"] = output_image[y][x + 1]	
-			
-	if surrounding.size() != 4:
-		print("Bad")
-
+				
 	return surrounding
+	
+# Remove duplciates from the list of patterns.
+# TODO: Decrease the complexity
+func remove_duplicates(all_patterns):
+	var duplicate_mask : Array[bool] = []
+	var unique : Array[Pattern] = []
+	
+	for i in all_patterns:
+		duplicate_mask.append(false)
+		
+	for i in range(all_patterns.size()):
+		for j  in range(all_patterns.size()):
+			if (i != j and all_patterns[i].is_equal(all_patterns[j]) and duplicate_mask[i] != true):
+				duplicate_mask[j] = true
+				
+	for i in range(all_patterns.size()):
+		if duplicate_mask[i] == false:
+			unique.append(all_patterns[i])
+	
+	return unique
 	
 func _on_timer_timeout():
 	timer_stopped = true

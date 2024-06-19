@@ -27,28 +27,8 @@ func load_patterns():
 			patterns.append(Pattern.new())
 			patterns.back().initialize(input_image.get_region(Rect2i(x, y, n, n)))
 	
-	patterns = remove_duplicates(patterns)
+	# patterns = remove_duplicates(patterns)
 	draw_patterns(patterns)
-
-# Remove duplciates from the list of patterns.
-# TODO: Decrease the complexity
-func remove_duplicates(all_patterns):
-	var duplicate_mask : Array[bool] = []
-	var unique : Array[Pattern] = []
-	
-	for i in all_patterns:
-		duplicate_mask.append(false)
-		
-	for i in range(all_patterns.size()):
-		for j  in range(all_patterns.size()):
-			if (i != j and all_patterns[i].is_equal(all_patterns[j]) and duplicate_mask[i] != true):
-				duplicate_mask[j] = true
-				
-	for i in range(all_patterns.size()):
-		if duplicate_mask[i] == false:
-			unique.append(all_patterns[i])
-	
-	return unique
 	
 # Helper function which can be used to visualize the current list of patterns.
 func draw_patterns(list):
