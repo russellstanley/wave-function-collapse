@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cefcd3paxkj5p"]
+[gd_scene load_steps=7 format=3 uid="uid://cefcd3paxkj5p"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_flvfh"]
 [ext_resource type="Texture2D" uid="uid://cknv8c2jf878i" path="res://assets/sprites/inputs/Flowers.png" id="3_yg5v3"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="4_62fyf"]
 [ext_resource type="PackedScene" uid="uid://c51g22upls6fa" path="res://scenes/pipes.tscn" id="5_dm2m1"]
+[ext_resource type="PackedScene" uid="uid://2ckm5wqt06ok" path="res://scenes/wave_renderer.tscn" id="5_r60qw"]
+[ext_resource type="PackedScene" uid="uid://dyy0uk3hinyoq" path="res://scenes/wave_generator.tscn" id="6_ki20v"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_flvfh")
@@ -23,5 +25,10 @@ wait_time = 0.01
 autostart = true
 
 [node name="Pipes" parent="." instance=ExtResource("5_dm2m1")]
+
+[node name="WaveRenderer" parent="." instance=ExtResource("5_r60qw")]
+
+[node name="WaveGenerator" parent="." instance=ExtResource("6_ki20v")]
+n = 0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
