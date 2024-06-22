@@ -1,25 +1,29 @@
 [gd_scene load_steps=6 format=3 uid="uid://c51g22upls6fa"]
 
 [ext_resource type="PackedScene" uid="uid://bgky42y0isc22" path="res://scenes/pattern.tscn" id="1_o64en"]
-[ext_resource type="Texture2D" uid="uid://ce17v2pc5rqqa" path="res://assets/sprites/patterns/corner.png" id="2_yksko"]
-[ext_resource type="Texture2D" uid="uid://bumwvh00k7dj4" path="res://assets/sprites/patterns/cross.png" id="3_c5fpk"]
-[ext_resource type="Texture2D" uid="uid://cmxpb3j1hr7kn" path="res://assets/sprites/patterns/empty.png" id="4_y4heh"]
-[ext_resource type="Texture2D" uid="uid://bns0fv1jgx5om" path="res://assets/sprites/patterns/line.png" id="5_iahm2"]
+[ext_resource type="Texture2D" uid="uid://ce17v2pc5rqqa" path="res://assets/sprites/pipes/corner.png" id="2_6txas"]
+[ext_resource type="Texture2D" uid="uid://bumwvh00k7dj4" path="res://assets/sprites/pipes/cross.png" id="3_lkvwl"]
+[ext_resource type="Texture2D" uid="uid://cmxpb3j1hr7kn" path="res://assets/sprites/pipes/empty.png" id="4_0uwlq"]
+[ext_resource type="Texture2D" uid="uid://bns0fv1jgx5om" path="res://assets/sprites/pipes/line.png" id="5_n4hfg"]
 
 [node name="Pipes" type="Node2D"]
 
 [node name="Corner" parent="." instance=ExtResource("1_o64en")]
-texture = ExtResource("2_yksko")
+scale = Vector2(5, 5)
+texture = ExtResource("2_6txas")
 edges_id = Array[int]([1, 1, 0, 0])
 
 [node name="Cross" parent="." instance=ExtResource("1_o64en")]
-texture = ExtResource("3_c5fpk")
+scale = Vector2(5, 5)
+texture = ExtResource("3_lkvwl")
 edges_id = Array[int]([1, 1, 1, 1])
 
 [node name="Empty" parent="." instance=ExtResource("1_o64en")]
-texture = ExtResource("4_y4heh")
+scale = Vector2(5, 5)
+texture = ExtResource("4_0uwlq")
 edges_id = Array[int]([0, 0, 0, 0])
 
 [node name="Line" parent="." instance=ExtResource("1_o64en")]
-texture = ExtResource("5_iahm2")
+scale = Vector2(5, 5)
+texture = ExtResource("5_n4hfg")
 edges_id = Array[int]([0, 1, 0, 1])

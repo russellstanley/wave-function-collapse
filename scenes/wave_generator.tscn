@@ -1,15 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyy0uk3hinyoq"]
+[gd_scene load_steps=4 format=3 uid="uid://dyy0uk3hinyoq"]
 
 [ext_resource type="Script" path="res://scripts/wave_generator.gd" id="1_h2l6v"]
 [ext_resource type="PackedScene" uid="uid://c51g22upls6fa" path="res://scenes/pipes.tscn" id="2_l05n8"]
+[ext_resource type="PackedScene" uid="uid://dd0w0c3vjuoip" path="res://scenes/summer.tscn" id="3_85ebw"]
 
 [node name="WaveGenerator" type="Node2D"]
 script = ExtResource("1_h2l6v")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.001
+one_shot = true
 autostart = true
 
 [node name="Pipes" parent="." instance=ExtResource("2_l05n8")]
+
+[node name="Summer" parent="." instance=ExtResource("3_85ebw")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

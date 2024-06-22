@@ -1,0 +1,83 @@
+[gd_scene load_steps=15 format=3 uid="uid://dd0w0c3vjuoip"]
+
+[ext_resource type="Script" path="res://scripts/pattern.gd" id="1_wdll6"]
+[ext_resource type="Texture2D" uid="uid://dkecsf2q5tmgc" path="res://assets/sprites/summer/grass 0.png" id="2_pl1np"]
+[ext_resource type="Texture2D" uid="uid://b01owx2heeihn" path="res://assets/sprites/summer/cliff 0.png" id="3_gi152"]
+[ext_resource type="Texture2D" uid="uid://dlb1n50a1bpju" path="res://assets/sprites/summer/cliffturn 1.png" id="4_yb2vm"]
+[ext_resource type="Texture2D" uid="uid://bkrv4lbt2bs6b" path="res://assets/sprites/summer/cliff 1.png" id="5_g7qx8"]
+[ext_resource type="Texture2D" uid="uid://b58lvi7nsott4" path="res://assets/sprites/summer/cliffturn 2.png" id="6_dpd43"]
+[ext_resource type="Texture2D" uid="uid://dkhppwhdeyja7" path="res://assets/sprites/summer/cliff 2.png" id="7_sjwej"]
+[ext_resource type="Texture2D" uid="uid://dcmycqfbvuht3" path="res://assets/sprites/summer/cliff 3.png" id="8_6axvd"]
+[ext_resource type="Texture2D" uid="uid://dc4frf43yqjuo" path="res://assets/sprites/summer/cliffturn 3.png" id="8_g8kl7"]
+[ext_resource type="Texture2D" uid="uid://eyy8ww3cuq53" path="res://assets/sprites/summer/cliffturn 0.png" id="9_ow88e"]
+[ext_resource type="Texture2D" uid="uid://bx3lfy1or6juf" path="res://assets/sprites/summer/cliffcorner 1.png" id="11_337um"]
+[ext_resource type="Texture2D" uid="uid://cevjkgiid2lmq" path="res://assets/sprites/summer/cliffcorner 2.png" id="12_dxvwf"]
+[ext_resource type="Texture2D" uid="uid://cgx3xd43224m1" path="res://assets/sprites/summer/cliffcorner 3.png" id="13_sepdt"]
+[ext_resource type="Texture2D" uid="uid://cbe24s15m6b7t" path="res://assets/sprites/summer/cliffcorner 0.png" id="14_2fq1s"]
+
+[node name="Summer" type="Node2D"]
+
+[node name="Grass" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("2_pl1np")
+edges_id = Array[int]([0, 0, 0, 0])
+
+[node name="CliffBottom" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("3_gi152")
+edges_id = Array[int]([0, 1, 0, 1])
+
+[node name="CliffBottomRight" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("4_yb2vm")
+edges_id = Array[int]([2, 0, 0, 1])
+
+[node name="CliffRight" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("5_g7qx8")
+edges_id = Array[int]([2, 0, 2, 0])
+
+[node name="CliffTopRight" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("6_dpd43")
+edges_id = Array[int]([0, 0, 2, 3])
+
+[node name="CliffTop" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("7_sjwej")
+edges_id = Array[int]([0, 3, 0, 3])
+
+[node name="CliffTopLeft" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("8_g8kl7")
+edges_id = Array[int]([0, 3, 4, 0])
+
+[node name="CliffLeft" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("8_6axvd")
+edges_id = Array[int]([4, 0, 4, 0])
+
+[node name="CliffBottomLeft" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("9_ow88e")
+edges_id = Array[int]([4, 1, 0, 0])
+
+[node name="BottomRightAlt" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("11_337um")
+edges_id = Array[int]([4, 0, 0, 3])
+
+[node name="TopRightAlt" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("12_dxvwf")
+edges_id = Array[int]([0, 0, 4, 1])
+
+[node name="TopLeftAlt" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("13_sepdt")
+edges_id = Array[int]([0, 1, 2, 0])
+
+[node name="BottomLeft" type="Node2D" parent="."]
+script = ExtResource("1_wdll6")
+texture = ExtResource("14_2fq1s")
+edges_id = Array[int]([2, 3, 0, 0])

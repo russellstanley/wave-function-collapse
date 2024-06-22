@@ -61,12 +61,12 @@ func collapse():
 		if state[i] == true:
 			valid_indices.append(i)
 			
-	selction = valid_indices.pick_random()
-	if selction == null:
+	if valid_indices.is_empty():
 		# In this case we have a contradiction
 		collapsed = true
 		current_entropy = -INF
 	else:
+		selction = valid_indices.pick_random()
+		tile = selction
 		collapsed = true
 		current_entropy = -INF
-		tile = selction

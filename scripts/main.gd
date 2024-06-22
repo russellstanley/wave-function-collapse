@@ -2,17 +2,9 @@ extends Node2D
 
 @onready var input : Sprite2D = $InputImage # Input bitmap
 @export var n : int = 3 					# Pattern size
-@onready var pipes = $Pipes
-@onready var output_size = Vector2i(21, 21)
-var output_image = []
-@onready var timer = $Timer
 
 var patterns : Array[Pattern] # List of patterns
 var input_size = Vector2i(0,0) # Size of the input bitmap
-
-var curent_x = 0
-var current_y = 0
-var timer_stopped = true
 
 # Genreate a list of unique patterns and their respective ruleset from an input image.
 # TODO: Setup the rules

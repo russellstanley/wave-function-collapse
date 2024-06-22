@@ -3,32 +3,53 @@
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_flvfh"]
 [ext_resource type="Texture2D" uid="uid://cknv8c2jf878i" path="res://assets/sprites/inputs/Flowers.png" id="3_yg5v3"]
 [ext_resource type="Script" path="res://scripts/camera_control.gd" id="4_62fyf"]
-[ext_resource type="PackedScene" uid="uid://c51g22upls6fa" path="res://scenes/pipes.tscn" id="5_dm2m1"]
+[ext_resource type="PackedScene" uid="uid://vfm8eqbjf5y6" path="res://scenes/slider.tscn" id="5_e0xa7"]
 [ext_resource type="PackedScene" uid="uid://2ckm5wqt06ok" path="res://scenes/wave_renderer.tscn" id="5_r60qw"]
 [ext_resource type="PackedScene" uid="uid://dyy0uk3hinyoq" path="res://scenes/wave_generator.tscn" id="6_ki20v"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_flvfh")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-position_smoothing_enabled = true
+[node name="WaveRenderer" parent="." instance=ExtResource("5_r60qw")]
+
+[node name="WaveGenerator" parent="." instance=ExtResource("6_ki20v")]
+
+[node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("4_62fyf")
+
+[node name="Button" type="Button" parent="Camera"]
+offset_left = -100.0
+offset_top = -301.0
+offset_right = 100.0
+offset_bottom = -241.0
+theme_override_font_sizes/font_size = 32
+action_mode = 0
+text = "Regenerate"
+
+[node name="Slider" parent="Camera" instance=ExtResource("5_e0xa7")]
+offset_left = -250.0
+offset_top = 280.0
+offset_right = 250.0
+offset_bottom = 296.0
+
+[node name="OptionButton" type="OptionButton" parent="Camera"]
+offset_left = 379.0
+offset_top = -301.0
+offset_right = 542.0
+offset_bottom = -245.0
+theme_override_font_sizes/font_size = 24
+item_count = 2
+selected = 0
+popup/item_0/text = "Pipes"
+popup/item_0/id = 0
+popup/item_1/text = "Terrain"
+popup/item_1/id = 1
 
 [node name="InputImage" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(10, 10)
 texture = ExtResource("3_yg5v3")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.01
-autostart = true
-
-[node name="Pipes" parent="." instance=ExtResource("5_dm2m1")]
-
-[node name="WaveRenderer" parent="." instance=ExtResource("5_r60qw")]
-
-[node name="WaveGenerator" parent="." instance=ExtResource("6_ki20v")]
-n = 0
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Camera/Button" to="WaveGenerator" method="_on_button_pressed"]
+[connection signal="value_changed" from="Camera/Slider" to="WaveGenerator" method="_on_slider_value_changed"]
+[connection signal="item_selected" from="Camera/OptionButton" to="WaveGenerator" method="_on_option_button_item_selected"]
